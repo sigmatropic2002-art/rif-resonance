@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#07100f">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="RIF Resonance">
+    <meta name="description" content="Private script-based frequency audio player for iPhone and iPad.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="RIF Resonance for iPhone &amp; iPad">
+    <meta property="og:description" content="Private library. Local playback.">
+    <meta property="og:image" content="https://sigmatropic2002-art.github.io/rif-resonance/og.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="RIF Resonance for iPhone &amp; iPad">
+    <meta name="twitter:description" content="Private library. Local playback.">
+    <meta name="twitter:image" content="https://sigmatropic2002-art.github.io/rif-resonance/og.png">
+    <title>RIF Resonance for iPhone &amp; iPad</title>
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+    <link rel="stylesheet" href="app.css">
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="brand-mark" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="brand-copy">
+        <h1>RIF RESONANCE</h1>
+        <p>Frequency Audio for Relaxation and Well-Being</p>
+      </div>
+      <div class="header-actions">
+        <button class="compact-button preferences-button" id="preferencesButton" data-testid="preferences-button" type="button">Preferences</button>
+        <div class="library-count" id="libraryCount">Script library required</div>
+      </div>
+    </header>
+
+    <aside class="notice" aria-label="Safety notice">
+      <strong>Audio tool only.</strong>
+      This software is not a medical device and is not a substitute for medical care. Start at low volume. Do not connect electrodes to an iPhone or iPad.
+      <details class="install-help">
+        <summary>Install on the Home Screen</summary>
+        <p>Open this link in Safari, tap Share, then choose <strong>Add to Home Screen</strong>. The app opens full-screen from its RIF Resonance icon.</p>
+      </details>
+    </aside>
+
+    <section class="library-gate" id="libraryGate" aria-labelledby="libraryGateHeading">
+      <div class="gate-lock" aria-hidden="true"><span></span></div>
+      <p class="eyebrow">Protected library</p>
+      <h2 id="libraryGateHeading">Upload the RIF Resonance script library</h2>
+      <p class="gate-copy">
+        The cloud app intentionally contains no frequency scripts. To unlock the player, choose the authorized
+        <strong>.riflibrary</strong> file from the Files app. The library stays on this iPhone or iPad and is not sent to the cloud.
+      </p>
+      <button class="primary-button gate-button" id="loadLibraryButton" data-testid="load-library-button" type="button">Choose library from Files</button>
+      <input id="libraryFileInput" data-testid="library-file-input" type="file" accept=".riflibrary,.json,application/json" hidden>
+      <p class="gate-status" id="libraryGateStatus" role="status" aria-live="polite">Your private library is checked and saved only in this browser.</p>
+    </section>
+
+    <main class="workspace" id="workspace" hidden>
+      <section class="library panel" aria-labelledby="libraryHeading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Library</p>
+            <h2 id="libraryHeading">Frequency scripts</h2>
+          </div>
+          <div class="library-heading-actions">
+            <button class="compact-button" id="newScriptButton" data-testid="new-script-button" type="button">+ New</button>
+            <button class="compact-button" id="importScriptButton" data-testid="import-script-button" type="button">Import .rts</button>
+            <button class="compact-button" id="customScriptsButton" data-testid="custom-scripts-button" type="button" aria-pressed="false">Custom (0)</button>
+            <button class="compact-button" id="changeLibraryButton" data-testid="change-library-button" type="button">Change library</button>
+            <span class="result-count" id="resultCount"></span>
+          </div>
+        </div>
+        <input id="importScriptInput" type="file" accept=".rts,text/plain" hidden>
+        <label class="search-box">
+          <span class="search-icon" aria-hidden="true"></span>
+          <span class="sr-only">Search scripts</span>
+          <input id="searchInput" data-testid="script-search" type="search" autocomplete="off" placeholder="Search 874 scripts...">
+          <kbd>⌘ K</kbd>
+        </label>
+        <div class="script-list" id="scriptList" data-testid="script-list" role="listbox" aria-label="Frequency scripts"></div>
+      </section>
+
+      <section class="player panel" aria-labelledby="selectedTitle">
+        <div class="player-titlebar">
+          <div>
+            <p class="eyebrow">Selected sequence</p>
+            <h2 id="selectedTitle">Choose a script</h2>
+            <p class="sequence-meta" id="sequenceMeta"></p>
+          </div>
+          <div class="player-title-actions">
+            <button class="compact-button" id="editScriptButton" data-testid="edit-script-button" type="button">Edit copy</button>
+            <button class="compact-button" id="exportScriptButton" data-testid="export-script-button" type="button">Save .rts</button>
+            <button class="compact-button delete-selected-button" id="deleteSelectedScriptButton" data-testid="delete-selected-script-button" type="button" hidden>Delete custom</button>
+            <div class="state-pill idle" id="statePill"><span></span><b>Ready</b></div>
+          </div>
+        </div>
+
+        <div class="now-card">
+          <div class="now-topline">
+            <span id="stepLabel">Tone 1</span>
+            <span id="timeLabel">00:00 / 00:00</span>
+          </div>
+          <div class="frequency-row">
+            <div>
+              <span class="frequency" id="frequencyValue">--</span>
+              <span class="unit">Hz</span>
+            </div>
+            <div class="channel-values" id="channelValues">L 100% · R 100%</div>
+          </div>
+          <div class="progress-track" aria-label="Current tone progress">
+            <span id="progressFill"></span>
+          </div>
+          <p class="range-note" id="rangeNote">Select a script to begin.</p>
+        </div>
+
+        <div class="transport" aria-label="Playback controls">
+          <button class="icon-button" id="previousButton" data-testid="previous-button" type="button" aria-label="Previous tone">‹</button>
+          <button class="play-button" id="playButton" data-testid="play-button" type="button" aria-label="Play sequence">
+            <span class="play-icon" aria-hidden="true"></span>
+            <b>Play sequence</b>
+          </button>
+          <button class="icon-button" id="nextButton" data-testid="next-button" type="button" aria-label="Next tone">›</button>
+          <button class="stop-button" id="stopButton" data-testid="stop-button" type="button">Stop</button>
+        </div>
+
+        <div class="settings-grid">
+          <label>
+            <span>Master volume <b id="volumeOutput">15%</b></span>
+            <input id="volumeInput" data-testid="volume-input" type="range" min="0" max="100" value="15">
+          </label>
+          <label>
+            <span>Waveform</span>
+            <select id="waveformSelect" data-testid="waveform-select">
+              <option value="sine">Sine</option>
+              <option value="square">Square</option>
+              <option value="triangle">Triangle</option>
+            </select>
+          </label>
+          <label>
+            <span>Run mode</span>
+            <select id="runModeSelect" data-testid="runmode-select">
+              <option value="original">Original timing</option>
+              <option value="preview">5-second preview</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="sequence-heading">
+          <div>
+            <p class="eyebrow">Sequence</p>
+            <h3>Program steps</h3>
+          </div>
+          <span>Click any row to start there</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>#</th><th>Frequency</th><th>Duration</th><th>Channels</th><th>Status</th></tr>
+            </thead>
+            <tbody id="sequenceBody" data-testid="sequence-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <div class="editor-backdrop" id="scriptEditor" hidden aria-hidden="true">
+      <section class="script-editor" role="dialog" aria-modal="true" aria-labelledby="editorHeading">
+        <div class="editor-header">
+          <div>
+            <p class="eyebrow">Script builder</p>
+            <h2 id="editorHeading">New frequency script</h2>
+          </div>
+          <button class="close-button" id="closeEditorButton" type="button" aria-label="Close script editor">×</button>
+        </div>
+
+        <label class="editor-name-field">
+          <span>Script name</span>
+          <input id="scriptNameInput" data-testid="script-name-input" type="text" maxlength="180" autocomplete="off" placeholder="My frequency sequence">
+        </label>
+
+        <div class="editor-format-note">
+          Original .rts columns: frequency (Hz), duration (seconds), phase, left channel (%), right channel (%).
+        </div>
+
+        <div class="editor-table-wrap">
+          <table class="editor-table">
+            <thead>
+              <tr><th>#</th><th>Frequency</th><th>Seconds</th><th>Phase</th><th>Left %</th><th>Right %</th><th></th></tr>
+            </thead>
+            <tbody id="editorToneRows" data-testid="editor-tone-rows"></tbody>
+          </table>
+        </div>
+
+        <div class="editor-row-actions">
+          <button class="compact-button" id="addToneButton" data-testid="add-tone-button" type="button">+ Add tone</button>
+          <span id="editorStatus" role="status" aria-live="polite"></span>
+        </div>
+
+        <div class="editor-footer">
+          <button class="danger-button" id="deleteScriptButton" type="button" hidden>Delete custom script</button>
+          <span class="editor-footer-spacer"></span>
+          <button class="secondary-button" id="cancelEditorButton" type="button">Cancel</button>
+          <button class="secondary-button" id="saveRTSButton" data-testid="save-rts-button" type="button">Save .rts file</button>
+          <button class="primary-button" id="saveLibraryButton" data-testid="save-library-button" type="button">Save to library</button>
+        </div>
+      </section>
+    </div>
+
+    <div class="editor-backdrop" id="preferencesDialog" hidden aria-hidden="true">
+      <section class="preferences-panel" role="dialog" aria-modal="true" aria-labelledby="preferencesHeading">
+        <div class="editor-header">
+          <div>
+            <p class="eyebrow">App settings</p>
+            <h2 id="preferencesHeading">RIF Resonance preferences</h2>
+          </div>
+          <button class="close-button" id="closePreferencesButton" type="button" aria-label="Close preferences">×</button>
+        </div>
+
+        <div class="preferences-grid">
+          <label>
+            <span>Default master volume <b id="preferencesVolumeOutput">15%</b></span>
+            <input id="preferencesVolumeInput" data-testid="preferences-volume-input" type="range" min="0" max="100" value="15">
+          </label>
+          <label>
+            <span>Default waveform</span>
+            <select id="preferencesWaveformSelect" data-testid="preferences-waveform-select">
+              <option value="sine">Sine</option>
+              <option value="square">Square</option>
+              <option value="triangle">Triangle</option>
+            </select>
+          </label>
+          <label>
+            <span>Default run mode</span>
+            <select id="preferencesRunModeSelect" data-testid="preferences-runmode-select">
+              <option value="original">Original timing</option>
+              <option value="preview">5-second preview</option>
+            </select>
+          </label>
+        </div>
+
+        <section class="output-card" aria-labelledby="audioOutputHeading">
+          <div>
+            <p class="eyebrow">System preference</p>
+            <h3 id="audioOutputHeading">Audio output</h3>
+            <p>RIF Resonance uses the audio output selected by iOS or iPadOS. Use Control Center to choose the device speakers, headphones, AirPods, or another AirPlay output.</p>
+          </div>
+          <div class="output-actions">
+            <button class="secondary-button" id="testOutputButton" data-testid="test-output-button" type="button">Test output</button>
+            <button class="secondary-button" id="openSoundSettingsButton" data-testid="open-sound-settings-button" type="button">Audio output help</button>
+          </div>
+          <p class="output-status" id="outputTestStatus" role="status" aria-live="polite"></p>
+        </section>
+
+        <div class="editor-footer preferences-footer">
+          <button class="secondary-button" id="resetPreferencesButton" type="button">Reset defaults</button>
+          <span class="editor-footer-spacer"></span>
+          <button class="secondary-button" id="cancelPreferencesButton" type="button">Cancel</button>
+          <button class="primary-button" id="savePreferencesButton" data-testid="save-preferences-button" type="button">Save preferences</button>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <span id="accessInfo">Locked until an authorized script library is selected from Files.</span>
+      <span id="audioInfo">Audio engine starts after you press Play.</span>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
