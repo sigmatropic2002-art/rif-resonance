@@ -590,7 +590,9 @@ tbody tr.current td { color: var(--text); }
 .library-gate h2 { max-width: 520px; margin: 0; font-size: clamp(24px, 4vw, 34px); letter-spacing: -0.035em; }
 .gate-copy { max-width: 570px; margin: 18px 0 24px; color: #aabbb5; font-size: 14px; line-height: 1.65; }
 .gate-copy strong { color: var(--accent-2); }
+.gate-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
 .gate-button { min-height: 48px; padding: 12px 20px; font-size: 13px; }
+.download-link { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; padding: 12px 20px; font-size: 13px; text-decoration: none; }
 .gate-status { min-height: 18px; margin: 18px 0 0; color: #768b83; font-size: 11px; }
 .gate-status.error { color: var(--danger); }
 .gate-status.success { color: var(--accent); }
