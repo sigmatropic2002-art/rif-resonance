@@ -55,7 +55,10 @@
         The cloud app intentionally contains no frequency scripts. To unlock the player, choose the authorized
         <strong>.riflibrary</strong> file from the Files app. The library stays on this iPhone or iPad and is not sent to the cloud.
       </p>
-      <button class="primary-button gate-button" id="loadLibraryButton" data-testid="load-library-button" type="button">Choose library from Files</button>
+      <div class="gate-actions">
+        <button class="primary-button gate-button" id="loadLibraryButton" data-testid="load-library-button" type="button">Choose library from Files</button>
+        <a class="secondary-button download-link" href="RIF-Resonance-App-Files.zip" download>Download App Files (ZIP)</a>
+      </div>
       <input id="libraryFileInput" data-testid="library-file-input" type="file" accept=".riflibrary,.json,application/json" hidden>
       <p class="gate-status" id="libraryGateStatus" role="status" aria-live="polite">Your private library is checked and saved only in this browser.</p>
     </section>
