@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#07110f">
+    <meta name="color-scheme" content="dark">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>RIF Resonance</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: #06100e;
+        color: #f4fbf8;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        padding: max(28px, env(safe-area-inset-top)) 18px max(32px, env(safe-area-inset-bottom));
+        background:
+          radial-gradient(circle at 18% 0%, rgba(72, 236, 186, 0.18), transparent 34%),
+          radial-gradient(circle at 90% 28%, rgba(44, 137, 255, 0.13), transparent 35%),
+          #06100e;
+      }
+
+      main {
+        width: min(100%, 920px);
+        margin: 0 auto;
+      }
+
+      header {
+        margin-bottom: 26px;
+        text-align: center;
+      }
+
+      .mark {
+        width: 86px;
+        height: 86px;
+        margin: 0 auto 18px;
+        display: grid;
+        place-items: center;
+        border-radius: 26px;
+        background: linear-gradient(145deg, #6cf0c6, #159f7d);
+        color: #03110c;
+        font-size: 31px;
+        font-weight: 950;
+        letter-spacing: -2px;
+        box-shadow: 0 18px 46px rgba(24, 191, 140, 0.25);
+      }
+
+      .eyebrow {
+        margin: 0 0 8px;
+        color: #7ae7c4;
+        font-size: 13px;
+        font-weight: 850;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(38px, 9vw, 62px);
+        line-height: 0.98;
+      }
+
+      .subtitle {
+        max-width: 620px;
+        margin: 16px auto 0;
+        color: #b8cdc6;
+        font-size: 17px;
+        line-height: 1.55;
+      }
+
+      .devices {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .device {
+        padding: 26px;
+        border: 1px solid rgba(126, 237, 204, 0.22);
+        border-radius: 26px;
+        background: rgba(12, 29, 26, 0.94);
+        box-shadow: 0 24px 64px rgba(0, 0, 0, 0.28);
+      }
+
+      .device-label {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 18px;
+      }
+
+      .device-icon {
+        width: 48px;
+        height: 58px;
+        display: grid;
+        place-items: center;
+        border: 2px solid #6de8c3;
+        border-radius: 13px;
+        color: #6de8c3;
+        font-size: 10px;
+        font-weight: 900;
+      }
+
+      .ipad .device-icon {
+        width: 62px;
+        height: 50px;
+        border-radius: 11px;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: 28px;
+      }
+
+      .device p {
+        margin: 6px 0 0;
+        color: #9fb8b0;
+        line-height: 1.45;
+      }
+
+      .actions {
+        display: grid;
+        gap: 12px;
+      }
+
+      .button {
+        display: block;
+        width: 100%;
+        padding: 16px 18px;
+        border-radius: 15px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 850;
+      }
+
+      .app-button {
+        background: #64ebc1;
+        color: #03110c;
+        box-shadow: 0 10px 28px rgba(38, 207, 156, 0.22);
+      }
+
+      .script-button {
+        border: 1px solid rgba(116, 232, 198, 0.42);
+        background: rgba(116, 232, 198, 0.08);
+        color: #92f1d2;
+      }
+
+      .button:active { transform: scale(0.985); }
+
+      .instructions {
+        margin-top: 20px;
+        padding: 24px;
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.045);
+      }
+
+      .instructions h2 {
+        font-size: 21px;
+      }
+
+      ol {
+        margin: 14px 0 0;
+        padding-left: 24px;
+        color: #c9d9d4;
+        line-height: 1.55;
+      }
+
+      li + li { margin-top: 8px; }
+
+      .note {
+        margin: 18px 0 0;
+        color: #8da79f;
+        font-size: 14px;
+        line-height: 1.5;
+        text-align: center;
+      }
+
+      @media (max-width: 700px) {
+        .devices { grid-template-columns: 1fr; }
+        .device { padding: 22px; }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <div class="mark" aria-hidden="true">RIF</div>
+        <p class="eyebrow">Frequency Audio for Relaxation and Well-Being</p>
+        <h1>RIF Resonance</h1>
+        <p class="subtitle">Choose your device. Open and install the app first, then download the separate authorized script library.</p>
+      </header>
+
+      <section class="devices" aria-label="Device downloads">
+        <article class="device iphone">
+          <div class="device-label">
+            <div class="device-icon" aria-hidden="true">iPhone</div>
+            <div>
+              <h2>iPhone</h2>
+              <p>Safari web app and separate script library</p>
+            </div>
+          </div>
+          <div class="actions">
+            <a class="button app-button" href="rif-resonance.html?device=iphone&amp;v=3">Open / Install iPhone App</a>
+            <a class="button script-button" href="https://github.com/sigmatropic2002-art/rif-resonance/releases/download/script-library-v1/RIF-Resonance-Script-Library.zip">Download iPhone Script Library</a>
+          </div>
+        </article>
+
+        <article class="device ipad">
+          <div class="device-label">
+            <div class="device-icon" aria-hidden="true">iPad</div>
+            <div>
+              <h2>iPad</h2>
+              <p>Safari web app and separate script library</p>
+            </div>
+          </div>
+          <div class="actions">
+            <a class="button app-button" href="rif-resonance.html?device=ipad&amp;v=3">Open / Install iPad App</a>
+            <a class="button script-button" href="https://github.com/sigmatropic2002-art/rif-resonance/releases/download/script-library-v1/RIF-Resonance-Script-Library.zip">Download iPad Script Library</a>
+          </div>
+        </article>
+      </section>
+
+      <section class="instructions">
+        <h2>How to install and unlock</h2>
+        <ol>
+          <li>Open this page in <strong>Safari</strong> and choose your device’s app button.</li>
+          <li>In Safari, tap <strong>Share → Add to Home Screen</strong> to install the RIF Resonance icon.</li>
+          <li>Return to this page and download your device’s script ZIP.</li>
+          <li>Open <strong>Files → Downloads</strong>, tap the ZIP to extract it, then select the <strong>.riflibrary</strong> file from inside RIF Resonance.</li>
+        </ol>
+      </section>
+
+      <p class="note">iPhone and iPad do not install apps from ZIP files. RIF Resonance installs from Safari as a secure Home Screen web app; the script library remains a separate download.</p>
+    </main>
+  </body>
+</html>
