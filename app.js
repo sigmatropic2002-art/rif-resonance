@@ -108,6 +108,19 @@
     };
   }
 
+  function readFileAsText(file) {
+    const readWithFileReader = () => new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.addEventListener("load", () => resolve(String(reader.result || "")), { once: true });
+      reader.addEventListener("error", () => reject(new Error("This device could not read the selected file.")), { once: true });
+      reader.addEventListener("abort", () => reject(new Error("File selection was cancelled.")), { once: true });
+      reader.readAsText(file, "utf-8");
+    });
+
+    if (typeof file?.text !== "function") return readWithFileReader();
+    return file.text().catch(readWithFileReader);
+  }
+
   function loadAuthorizedLibrary() {
     try {
       const stored = localStorage.getItem(LIBRARY_STORAGE_KEY);
@@ -813,7 +826,10 @@
     const replacingExistingLibrary = libraryScripts.length > 0;
     try {
       if (!replacingExistingLibrary) setLibraryGateStatus("Checking the selected library...");
-      const packageData = parseScriptLibrary(await file.text());
+      if (/\.zip$/i.test(file.name)) {
+        throw new Error("Select the .riflibrary file, not the ZIP. In Files, tap the ZIP once to extract it, then choose “RIF Resonance Script Library.riflibrary”.");
+      }
+      const packageData = parseScriptLibrary(await readFileAsText(file));
       activateScriptLibrary(packageData);
     } catch (error) {
       if (replacingExistingLibrary) {
@@ -899,7 +915,8 @@
     ui.importInput.value = "";
     if (!file) return;
     try {
-      const imported = parseRTS(await file.text(), file.name);
+      if (/\.zip$/i.test(file.name)) throw new Error("Extract the ZIP in Files, then select an individual .rts file.");
+      const imported = parseRTS(await readFileAsText(file), file.name);
       openEditor({ ...imported, heading: "Import original .rts script" });
       const recoveryText = imported.recoveredOriginal ? " The corrected library version was used for malformed legacy lines." : "";
       setEditorStatus(`${imported.tones.length} tones imported.${recoveryText} Review and save to the library.`, "success");

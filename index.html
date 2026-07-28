@@ -53,13 +53,14 @@
       <h2 id="libraryGateHeading">Upload the RIF Resonance script library</h2>
       <p class="gate-copy">
         The cloud app intentionally contains no frequency scripts. To unlock the player, choose the authorized
-        <strong>.riflibrary</strong> file from the Files app. The library stays on this iPhone or iPad and is not sent to the cloud.
+        <strong>.riflibrary</strong> file from the Files app. If you downloaded a ZIP, tap it once in Files to extract the library first.
+        The library stays on this iPhone or iPad and is not sent to the cloud.
       </p>
       <div class="gate-actions">
         <button class="primary-button gate-button" id="loadLibraryButton" data-testid="load-library-button" type="button">Choose library from Files</button>
         <a class="secondary-button download-link" href="RIF-Resonance-App-Files.zip" download>Download App Files (ZIP)</a>
       </div>
-      <input id="libraryFileInput" data-testid="library-file-input" type="file" accept=".riflibrary,.json,application/json" hidden>
+      <input id="libraryFileInput" data-testid="library-file-input" type="file" hidden>
       <p class="gate-status" id="libraryGateStatus" role="status" aria-live="polite">Your private library is checked and saved only in this browser.</p>
     </section>
 
@@ -78,7 +79,7 @@
             <span class="result-count" id="resultCount"></span>
           </div>
         </div>
-        <input id="importScriptInput" type="file" accept=".rts,text/plain" hidden>
+        <input id="importScriptInput" type="file" hidden>
         <label class="search-box">
           <span class="search-icon" aria-hidden="true"></span>
           <span class="sr-only">Search scripts</span>

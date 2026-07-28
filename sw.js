@@ -1,4 +1,4 @@
-const CACHE_NAME = "rif-resonance-ios-v1";
+const CACHE_NAME = "rif-resonance-ios-v2";
 const APP_SHELL = [
   "./",
   "app.css",
