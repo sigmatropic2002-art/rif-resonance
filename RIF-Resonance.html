@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#07100f">
-    <meta name="description" content="Open RIF Resonance on iPhone or iPad and download its separate script library.">
-    <title>RIF Resonance for iPhone &amp; iPad</title>
+    <meta name="description" content="Download RIF Resonance for MacBook and Windows, or open it on iPhone and iPad.">
+    <title>RIF Resonance — All Versions</title>
     <style>
       :root {
         color-scheme: dark;
@@ -46,6 +46,11 @@
         padding: 24px; border: 1px solid var(--line); border-radius: 25px;
         background: var(--panel); box-shadow: 0 24px 65px rgba(0,0,0,.22);
       }
+      .platform {
+        display: inline-block; margin-bottom: 12px; padding: 5px 9px; border: 1px solid var(--line);
+        border-radius: 999px; color: var(--green); font-size: .72rem; font-weight: 800;
+        letter-spacing: .1em; text-transform: uppercase;
+      }
       .device { margin: 0 0 8px; font-size: 1.45rem; }
       .card p { margin: 0 0 22px; color: var(--muted); line-height: 1.5; }
       .button {
@@ -83,39 +88,56 @@
       </header>
 
       <p class="intro">
-        Choose your device below. The app and its script library are separate:
-        open the app first, then download and select the <strong>.riflibrary</strong> file from the Files app.
+        One official page for every version. Download the complete desktop package for
+        <strong>MacBook</strong> or <strong>Windows</strong>, or open the mobile app on
+        <strong>iPhone</strong> or <strong>iPad</strong>.
       </p>
 
       <section class="cards" aria-label="Device downloads">
         <article class="card">
+          <span class="platform">macOS</span>
+          <h2 class="device">MacBook</h2>
+          <p>Native RIF Resonance app for macOS 12 or newer, including the built-in script library and editable original files.</p>
+          <a class="button open" href="RIF-Resonance-MacBook.zip" download>Download for MacBook</a>
+        </article>
+
+        <article class="card">
+          <span class="platform">Windows</span>
+          <h2 class="device">Windows PC</h2>
+          <p>Portable Windows package with its launcher, offline player, script editor, and complete built-in library.</p>
+          <a class="button open" href="RIF-Resonance-Windows.zip" download>Download for Windows</a>
+        </article>
+
+        <article class="card">
+          <span class="platform">iOS</span>
           <h2 class="device">iPhone</h2>
-          <p>Open the touch-friendly web app in Safari, then install it on the Home Screen if desired.</p>
-          <a class="button open" href="index.html?device=iphone&amp;v=6">Open RIF Resonance for iPhone</a>
+          <p>Open the touch-friendly app in Safari. Download the separate library, then choose it from the iPhone Files app.</p>
+          <a class="button open" href="index.html?device=iphone&amp;v=7">Open on iPhone</a>
           <a class="button download" href="RIF-Resonance-Script-Library.riflibrary" download>Download iPhone Script Library</a>
         </article>
 
         <article class="card">
+          <span class="platform">iPadOS</span>
           <h2 class="device">iPad</h2>
-          <p>Open the full-size web app in Safari, then install it on the Home Screen if desired.</p>
-          <a class="button open" href="index.html?device=ipad&amp;v=6">Open RIF Resonance for iPad</a>
+          <p>Open the full-size app in Safari. Download the separate library, then choose it from the iPad Files app.</p>
+          <a class="button open" href="index.html?device=ipad&amp;v=7">Open on iPad</a>
           <a class="button download" href="RIF-Resonance-Script-Library.riflibrary" download>Download iPad Script Library</a>
         </article>
       </section>
 
       <section class="steps">
-        <h2>How to use it</h2>
+        <h2>Quick start</h2>
         <ol>
-          <li>Tap <strong>Open RIF Resonance</strong> for your device.</li>
-          <li>Return here and tap <strong>Download Script Library</strong>.</li>
-          <li>In the app, tap <strong>Choose library from Files</strong> and select the downloaded <strong>.riflibrary</strong> file.</li>
-          <li>For a Home Screen icon, open the app in Safari, tap Share, then <strong>Add to Home Screen</strong>.</li>
+          <li><strong>MacBook or Windows:</strong> download the ZIP, open it, and follow the included “START HERE” instructions.</li>
+          <li><strong>iPhone or iPad:</strong> open the app, return here, and download the matching Script Library.</li>
+          <li>In the mobile app, tap <strong>Choose library from Files</strong> and select the downloaded <strong>.riflibrary</strong> file.</li>
+          <li>For a mobile Home Screen icon, open the app in Safari, tap Share, then <strong>Add to Home Screen</strong>.</li>
         </ol>
       </section>
 
       <p class="notice">
         Audio wellness tool only. RIF Resonance is not a medical device and does not diagnose, treat, cure, or prevent disease.
-        Start at low volume and use the audio output selected in iOS or iPadOS.
+        Start at low volume and use your device’s normal audio output.
       </p>
     </main>
   </body>
